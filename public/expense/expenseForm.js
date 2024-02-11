@@ -37,7 +37,7 @@ function displayElement(expense){
     listElement.appendChild(deleteButton);
 
     deleteButton.addEventListener("click",()=>{
-        let url = `http://localhost:3000/expense/deleteexpense/${expense.id}`;
+        let url = `http://16.170.201.145:3000/expense/deleteexpense/${expense.id}`;
         axios.get(url,{headers:{"authorization": token}})
         .then((res)=>{
             expenseList.removeChild(listElement);
@@ -83,7 +83,7 @@ function fetchExpenses(page){
     console.log(page,pageSize);
 
 
-    axios.get(`http://localhost:3000/expense/getexpense?page=${page}&pageSize=${pageSize}`,{headers: {"authorization": token}})
+    axios.get(`http://16.170.201.145:3000/expense/getexpense?page=${page}&pageSize=${pageSize}`,{headers: {"authorization": token}})
     .then((res)=>{
         //console.log(res);
         const {currentPage, hasNextPage, nextPage, hasPreviousPage, previousPage, lastPage} = res.data;
@@ -123,7 +123,7 @@ function addExpense(e){
     let obj = {
         amount,description,category
     }
-    axios.post("http://localhost:3000/expense/addexpense",obj,{headers: {"authorization": token}})
+    axios.post("http://16.170.201.145:3000/expense/addexpense",obj,{headers: {"authorization": token}})
     //.then(res=>console.log(res))
     .then((res)=>displayElement(res.data.data))
     .catch(err=>console.log(err));
@@ -141,14 +141,14 @@ document.getElementById('premium').onclick = async function (event) {
 
     
         //const token = localStorage.getItem('token');
-        const response = await axios.get("http://localhost:3000/purchase/purchasepremium", { headers: { "authorization": token } })
+        const response = await axios.get("http://16.170.201.145:3000/purchase/purchasepremium", { headers: { "authorization": token } })
         console.log(response);
         const options = {
             "key": response.data.key_id_,
             "order_id": response.data.order.id,
             "handler": async function (response) {
                     //console.log(response);
-                    await axios.post("http://localhost:3000/purchase/updatetransactionstatus", {
+                    await axios.post("http://16.170.201.145:3000/purchase/updatetransactionstatus", {
                         order_id: options.order_id,
                         payment_id: response.razorpay_payment_id
                     }, { headers: { "authorization": token } })
@@ -168,7 +168,7 @@ document.getElementById('premium').onclick = async function (event) {
         event.preventDefault();
     
         rzp1.on('payment.failed', async function (response) {
-            await axios.post("http://localhost:3000/purchase/updatetransactionstatus", {
+            await axios.post("http://16.170.201.145:3000/purchase/updatetransactionstatus", {
                     order_id: options.order_id,
                     payment_id: response.razorpay_payment_id // if transaction is failed no payment key is generated
                 }, { headers: { "authorization": token } })
@@ -217,7 +217,7 @@ function displayLeaderBoard(info){
 
 
 document.getElementById("leaderboard").onclick = async function(){
-    axios.get("http://localhost:3000/premium/showleaderboard")
+    axios.get("http://16.170.201.145:3000/premium/showleaderboard")
 // .then(data=>console.log(data.data))
 .then(res=>displayLeaderBoard(res.data.data))
 .catch(err=>console.log(err));
@@ -240,7 +240,7 @@ function displaylinks(data){
 
 
 document.getElementById("download").onclick = async ()=>{
-    await axios.get("http://localhost:3000/expense/download",{headers: {"authorization": token}})
+    await axios.get("http://16.170.201.145:3000/expense/download",{headers: {"authorization": token}})
     .then((response)=>{
         console.log(response);
         if(response.data.message === "success"){
