@@ -19,7 +19,7 @@ const Sib = require('sib-api-v3-sdk');
 exports.postForgotPassword = async (req,res,next) =>{
 
     try{
-        //console.log(req);
+        console.log(req);
         let recoveryMail = req.body.recoveryMail;
         console.log(recoveryMail);
         let uuidv4 = uuid.v4();
