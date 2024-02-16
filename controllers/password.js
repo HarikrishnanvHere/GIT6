@@ -37,7 +37,7 @@ exports.postForgotPassword = async (req,res,next) =>{
             isactive: true
         })
 
-        let url = `http://13.53.193.39:3000/password/resetpassword/${uuidv4}`;
+        let url = `http://16.171.149.0:3000/password/resetpassword/${uuidv4}`;
         
         
         let BREVO_API_KEY = process.env.BREVO_API_KEY;
@@ -64,7 +64,7 @@ exports.postForgotPassword = async (req,res,next) =>{
             to: receivers,
             subject: "Test Mail",
             textContent : "Your password is HARI",
-            htmlContent : `<a href="http://13.53.193.39:3000/password/resetpassword/${uuidv4}">reset password</a>`
+            htmlContent : `<a href="http://16.171.149.0:3000/password/resetpassword/${uuidv4}">reset password</a>`
         })
         .then(data=>{
             console.log(data);
