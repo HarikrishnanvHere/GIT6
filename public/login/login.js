@@ -27,6 +27,7 @@ function fetchLogInCredentials(e){
         console.log(JSON.stringify(err));
         messageElement.style.display = "block";
         messageElement.textContent = err.message;
+        console.log(err);
     })
 }
 
