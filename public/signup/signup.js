@@ -11,7 +11,7 @@ function signUpUser(e){
     let obj = {
         name,email,password
     }
-    axios.post("http://16.170.228.22:3000/user/signup",obj)
+    axios.post("http://13.60.26.128:3000/user/signup",obj)
     .then((res)=>{
         console.log(res);
         alert ("New User Created!");
