@@ -2,7 +2,7 @@ async function sendMail(e){
     e.preventDefault();
     try {
         let recoveryMail = document.getElementById('recovery-mail').value;
-        let response = await axios.post('http://16.170.228.22:3000/password/forgotpassword',{recoveryMail})
+        let response = await axios.post('http://13.60.26.128:3000/password/forgotpassword',{recoveryMail})
         document.getElementById('resultMessage').textContent = response.data.message;
     }catch(err){
         document.getElementById('resultMessage').textContent = "something went wrong!";
