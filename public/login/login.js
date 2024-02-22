@@ -9,7 +9,7 @@ function fetchLogInCredentials(e){
     let obj = {
         email,password
     }
-    axios.post("http://13.60.26.128:3000/user/login",obj)
+    axios.post("http://16.171.14.149:3000/user/login",obj)
     .then((res)=>{
         alert(res.data.message);
         localStorage.setItem("token", res.data.token);
